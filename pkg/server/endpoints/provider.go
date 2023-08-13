@@ -1,6 +1,8 @@
 package endpoints
 
 import (
+	"net/http"
+
 	"github.com/dgalifi/go-webapp/pkg/config"
 	"github.com/dgalifi/go-webapp/pkg/services/dummy"
 	"github.com/gin-gonic/gin"
@@ -12,5 +14,11 @@ type EndpointProvider struct {
 }
 
 func (ep EndpointProvider) DoSomethingDummy(c *gin.Context) {
-	ep.DummyService.DoSomething(c)
+	statusCode := http.StatusOK
+
+	retMsg := ep.DummyService.DoSomething()
+
+	c.JSON(statusCode, gin.H{
+		"message": retMsg,
+	})
 }
