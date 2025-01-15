@@ -45,6 +45,8 @@ func addRoutes(
 	})
 
 	engine.GET("/dummy", ep.DoSomethingDummy)
+
+	engine.GET("/health", ep.HealthCheck)
 }
 
 // Start will bind a Gin router to a TCP port and start
